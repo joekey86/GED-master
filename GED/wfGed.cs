@@ -21,7 +21,7 @@ namespace GED
         {
             string httpPostData = string.Empty;
             
-            SPFunctions.getStatus("https://ghtpdfr.sharepoint.com/sites/ged", 18, "GED");
+           SPFunctions.getStatus("https://ghtpdfr.sharepoint.com/sites/ged", 20, "GED",log);
             var reader = new StreamReader(req.Content.ReadAsStreamAsync().Result);
             if (reader != null)
             {
@@ -34,13 +34,14 @@ namespace GED
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(httpPostData);
 
-
+               // log.LogInformation(xmlDoc.OuterXml);
 
                 // Read data from event payload.
                 string webUrl = xmlDoc.GetElementsByTagName("WebUrl")[0].InnerText;
                 int listItemId = int.Parse(xmlDoc.GetElementsByTagName("ListItemId")[0].InnerText);
                 //ClientContext ctx = SPConnection.GetSPOLContext(webUrl);
-                //SPFunctions.getStatus(ctx, 18, "GED");
+                string listTitle = xmlDoc.GetElementsByTagName("ListTitle")[0].InnerText;
+                SPFunctions.getStatus(webUrl,listItemId, listTitle, log);
             }
    
 

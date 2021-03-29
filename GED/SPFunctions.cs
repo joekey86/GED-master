@@ -605,25 +605,26 @@ TaxonomySession taxonomySession = TaxonomySession.GetTaxonomySession(ctx);
                     groupArg => groupArg.Id,
                     groupArg => groupArg.Name
                 )
-            );
-            //  ctx.ExecuteQuery();
+            );            
             Guid catTermId = new Guid(tax.ElementAt(0).TermGuid);
             TermSet catTermSet = termStore.GetTermSet(new Guid("6792f6c1-20ec-4e10-a1e8-a2c04f2906ec"));
             Term catTerm = catTermSet.GetTerm(catTermId);
             ctx.Load(catTermSet);
             ctx.Load(catTerm);
             ctx.Load(catTerm.Labels);
+           // ctx.Load(catTerm.Parent.Labels);
             Guid docTermId = new Guid(typeDoc.TermGuid);
             TermSet docTermSet = termStore.GetTermSet(new Guid("40ae95fa-353f-4154-a574-65f7297286ca"));
             Term docTerm = docTermSet.GetTerm(docTermId);
-            ctx.Load(docTermSet);
-          //  ctx.ExecuteQuery();
-            ctx.Load(docTerm);
-          //  ctx.ExecuteQuery();
+            ctx.Load(docTermSet);          
+            ctx.Load(docTerm);       
             ctx.Load(docTerm.Labels);
             ctx.ExecuteQuery();
-            //40ae95fa-353f-4154-a574-65f7297286ca
             string reference = catTerm.Labels[1].Value + "/" + docTerm.Labels[1].Value + "/" + Id;
+            //if(catTerm.Parent.Labels.Count > 1)
+            //{
+            //   reference = catTerm.Parent.Labels[1].Value + "/" + catTerm.Labels[1].Value + "/" + docTerm.Labels[1].Value + "/" + Id;
+            //}
             return reference;
         }
     }

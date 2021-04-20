@@ -57,7 +57,7 @@ namespace GED
                         switch (status)
                         {
                             case "Brouillon":
-                                SendEmail(ctx, (FieldUserValue[])item["R_x00e9_dacteur_x0028_s_x0029_"], "GED - Un document à été créé", 1, (FieldUserValue[])item["Email_x0020_envoy_x00e9__x0020_au_x0028_x_x0029__x0020_R_x00e9_dacteur_x0028_s_x0029_"], item);
+                                SendEmail(webUrl, (FieldUserValue[])item["R_x00e9_dacteur_x0028_s_x0029_"], "GED - Un document à été créé", 1, (FieldUserValue[])item["Email_x0020_envoy_x00e9__x0020_au_x0028_x_x0029__x0020_R_x00e9_dacteur_x0028_s_x0029_"], item);
                                 SPPermissionAuteur(ctx, item, "modify", (FieldUserValue)item["Author"], false);
                                 SPPermission(ctx, item, "modify", (FieldUserValue[])item["R_x00e9_dacteur_x0028_s_x0029_"], false);                         
                                 UpdateReceivedEmail(item, "Email_x0020_envoy_x00e9__x0020_au_x0028_x_x0029__x0020_R_x00e9_dacteur_x0028_s_x0029_", (FieldUserValue[])item["Email_x0020_envoy_x00e9__x0020_au_x0028_x_x0029__x0020_R_x00e9_dacteur_x0028_s_x0029_"], (FieldUserValue[])item["R_x00e9_dacteur_x0028_s_x0029_"]);
@@ -82,7 +82,7 @@ namespace GED
                                 SPPermissionAuteur(ctx, item, "read", (FieldUserValue)item["Author"], false);
                                 SPPermission(ctx, item, "read", (FieldUserValue[])item["R_x00e9_dacteur_x0028_s_x0029_"], false);
                                 SPPermission(ctx, item, "modify", (FieldUserValue[])item["V_x00e9_rificateurs"], false);
-                                SendEmail(ctx, (FieldUserValue[])item["V_x00e9_rificateurs"], "GED - Demande de vérification d'un document", 2, (FieldUserValue[])item["Email_x0020_envoy_x00e9__x0020_au_x0028_x_x0029__x0020_V_x00e9_rificateur_x0028_s_x0029_"], item);
+                                SendEmail(webUrl, (FieldUserValue[])item["V_x00e9_rificateurs"], "GED - Demande de vérification d'un document", 2, (FieldUserValue[])item["Email_x0020_envoy_x00e9__x0020_au_x0028_x_x0029__x0020_V_x00e9_rificateur_x0028_s_x0029_"], item);
                                 UpdateReceivedEmail(item, "Email_x0020_envoy_x00e9__x0020_au_x0028_x_x0029__x0020_V_x00e9_rificateur_x0028_s_x0029_", (FieldUserValue[])item["Email_x0020_envoy_x00e9__x0020_au_x0028_x_x0029__x0020_V_x00e9_rificateur_x0028_s_x0029_"], (FieldUserValue[])item["V_x00e9_rificateurs"]);
                                 //  UpdateReceivedEmail(ctx, "Verificateur", (FieldUserValue[])item["V_x00e9_rificateurs"], listName, Id);
 
@@ -92,7 +92,7 @@ namespace GED
                                 SPPermission(ctx, item, "read", (FieldUserValue[])item["R_x00e9_dacteur_x0028_s_x0029_"], false);
                                 SPPermission(ctx, item, "read", (FieldUserValue[])item["V_x00e9_rificateurs"], false);
                                 SPPermission(ctx, item, "modify", (FieldUserValue[])item["Validateur_x0028_s_x0029_"], false);
-                                SendEmail(ctx, (FieldUserValue[])item["Validateur_x0028_s_x0029_"], "GED - Un document est en attente de validation", 6, (FieldUserValue[])item["Email_x0020_envoy_x00e9__x0020_aux_x0020_V_x00e9_rificateur_x0028_s_x0029_"], item);
+                                SendEmail(webUrl, (FieldUserValue[])item["Validateur_x0028_s_x0029_"], "GED - Un document est en attente de validation", 6, (FieldUserValue[])item["Email_x0020_envoy_x00e9__x0020_aux_x0020_V_x00e9_rificateur_x0028_s_x0029_"], item);
                                 UpdateReceivedEmail(item, "Email_x0020_envoy_x00e9__x0020_aux_x0020_V_x00e9_rificateur_x0028_s_x0029_", (FieldUserValue[])item["Email_x0020_envoy_x00e9__x0020_aux_x0020_V_x00e9_rificateur_x0028_s_x0029_"], (FieldUserValue[])item["Validateur_x0028_s_x0029_"]);
                                 // UpdateReceivedEmail(ctx, "Validateur", (FieldUserValue[])item["Validateur_x0028_s_x0029_"], listName, Id);
                                 break;
@@ -109,14 +109,14 @@ namespace GED
                                 SPPermission(ctx, item, "read", (FieldUserValue[])item["Validateur_x0028_s_x0029_"], false);
                                 SPPermission(ctx, item, "read", (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_information"], false);
                                 //Cible individuel info
-                                SendEmail(ctx, (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_information"], "GED - Nouveau document publié", 3, (FieldUserValue[])item["Email_x0020_Cible_x0020_indiv_x0020_info"], item);
+                                SendEmail(webUrl, (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_information"], "GED - Nouveau document publié", 3, (FieldUserValue[])item["Email_x0020_Cible_x0020_indiv_x0020_info"], item);
                                 UpdateReceivedEmail(item, "Email_x0020_Cible_x0020_indiv_x0020_application", (FieldUserValue[])item["Email_x0020_Cible_x0020_indiv_x0020_application"], (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_information"]);
                                 // UpdateReceivedEmail(ctx, "CibleIndvInfo", (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_information"], listName, Id);
                                 string emailsToSend = string.Empty;
 
                                 //cible individuel application
                                 SPPermission(ctx, item, "read", (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_application"], true);
-                                SendEmail(ctx, (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_application"], "GED - Nouveau document publié", 4, (FieldUserValue[])item["Email_x0020_Cible_x0020_indiv_x0020_application"], item);
+                                SendEmail(webUrl, (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_application"], "GED - Nouveau document publié", 4, (FieldUserValue[])item["Email_x0020_Cible_x0020_indiv_x0020_application"], item);
                                 UpdateReceivedEmail(item, "Email_x0020_Cible_x0020_indiv_x0020_info", (FieldUserValue[])item["Email_x0020_Cible_x0020_indiv_x0020_info"], (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_application"]);
                                 // UpdateReceivedEmail(ctx, "Email_x0020_Cible_x0020_indiv_x0020_application"", (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_application"], listName, Id);
                                 ClientContext ctx1 = SPConnection.GetSPOLContext(webUrl);
@@ -140,7 +140,7 @@ namespace GED
                                 SPPermission(ctx, item, "read", (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_collective_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_information"], false);
                                 SPPermission(ctx, item, "read", (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_collective_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_application"], true);
                                 SPPermission(ctx, item, "read", (FieldUserValue[])item["Cible_x0028_s_x0029__x0020_individuelle_x0028_s_x0029__x0020_de_x0020_la_x0020_diffusion_x0020_pour_x0020_application"], true);
-                                SendEmail(ctx, (FieldUserValue[])item["Author"], "GED - Document en attente de révision", 5, emptyuser, item);
+                                SendEmail(webUrl, (FieldUserValue[])item["Author"], "GED - Document en attente de révision", 5, emptyuser, item);
                                 if (item["Passer_x0020_en_x0020_publi_x00e9_"].ToString() == "Yes")
                                 {
                                     item["Etat"] = "Publié";
@@ -165,28 +165,38 @@ namespace GED
 
         public static void SPPermission(ClientContext ctx, ListItem item , string role , FieldUserValue[] users, bool createADL)
         {
-            foreach(FieldUserValue  user in users)
+           // using (ClientContext ctx = SPConnection.GetSPOLContext(ctx1.Url))
             {
-                User userpermission = ctx.Web.SiteUsers.GetById(user.LookupId);
-               // item.BreakRoleInheritance(true, true);
-                RoleDefinitionBindingCollection collRoleDefinitionBinding = new RoleDefinitionBindingCollection(ctx);
-                if (createADL)
+               // ListItem item = ctx.Web.Lists.GetByTitle("GED").GetItemById(item1.Id);
+                //ctx.Load(item);
+                foreach (FieldUserValue user in users)
                 {
-                    AddAccusseDeLecture(ctx, item.Id, item["Title"].ToString(), userpermission);
-                 }
-                if (role == "modify")
-                {
-                    collRoleDefinitionBinding.Add(ctx.Web.RoleDefinitions.GetByType(RoleType.Contributor)); //Set permission type
+                    
+                    User userpermission = ctx.Web.SiteUsers.GetById(user.LookupId);
+                    ctx.Load(userpermission);
+                    ctx.ExecuteQuery();
+                    // item.BreakRoleInheritance(true, true);
+                    RoleDefinitionBindingCollection collRoleDefinitionBinding = new RoleDefinitionBindingCollection(ctx);
+                    if (createADL)
+                    {
+                        AddAccusseDeLecture(ctx, item.Id, item["Title"].ToString(), userpermission);
+                    }
+                    if (role == "modify")
+                    {
+                        collRoleDefinitionBinding.Add(ctx.Web.RoleDefinitions.GetByType(RoleType.Contributor)); //Set permission type
 
+                    }
+                    else if (role == "read")
+                    {
+                        collRoleDefinitionBinding.Add(ctx.Web.RoleDefinitions.GetByType(RoleType.Reader)); //Set permission type
+                    }
+                   // if(item.RoleAssignments.GetByPrincipalId(user.LookupId) !=null)
+                       // item.RoleAssignments.GetByPrincipalId(user.LookupId).DeleteObject();
+                    item.RoleAssignments.Add(userpermission, collRoleDefinitionBinding);
                 }
-                else if(role == "read")
-                {
-                    collRoleDefinitionBinding.Add(ctx.Web.RoleDefinitions.GetByType(RoleType.Reader)); //Set permission type
-                }
-                item.RoleAssignments.GetByPrincipalId(user.LookupId).DeleteObject();
-                item.RoleAssignments.Add(userpermission, collRoleDefinitionBinding);
-            }
-            
+             //   item.SystemUpdate();
+              //  ctx.ExecuteQuery();
+            }   
         }
         public static void ResetBreakRoleInheritance(ClientContext ctx, ListItem item)
         {
@@ -221,7 +231,8 @@ namespace GED
             
             
                 User userpermission = ctx.Web.SiteUsers.GetById(user.LookupId);
-              //  item.BreakRoleInheritance(true, true);
+            //  item.BreakRoleInheritance(true, true);
+            ctx.Load(userpermission);
                 RoleDefinitionBindingCollection collRoleDefinitionBinding = new RoleDefinitionBindingCollection(ctx);
                 if (createADL)
                 {
@@ -325,11 +336,12 @@ namespace GED
                 
             }
         }
-        public static void SendEmail(ClientContext ctx, FieldUserValue[] users , string Subject, int index , FieldUserValue[] userReceived,ListItem item)
+        public static void SendEmail(string webUrl, FieldUserValue[] users , string Subject, int index , FieldUserValue[] userReceived,ListItem item)
         {
-            
-            
-            foreach(FieldUserValue user in users)
+
+            using (ClientContext ctx = SPConnection.GetSPOLContext(webUrl))
+            {
+                foreach (FieldUserValue user in users)
             {
                 bool notcontain = true; 
                 if(userReceived != null)
@@ -342,52 +354,52 @@ namespace GED
                         }
                     }
                 }
-                
-                if (notcontain)
-                {
-                    
-                    List<string> usersEmail = new List<string> { };
-                    usersEmail.Add(user.Email.ToString());
-                    string body = "";
-                    if (index == 4)
+
+                    if (notcontain)
                     {
-                        body = EmailBody(index, item, user.Email.ToString(), users);
-                    }
-                    else
-                    {
-                        body = EmailBody(index, item, user.Email.ToString());
-                    }
-                    try
-                    {
-                        ///jke risk of dispose
-                      //  using (ctx)
+
+                        List<string> usersEmail = new List<string> { };
+                        usersEmail.Add(user.Email.ToString());
+                        string body = "";
+                        if (index == 4)
                         {
+                            body = EmailBody(index, item, user.Email.ToString(), users);
+                        }
+                        else
+                        {
+                            body = EmailBody(index, item, user.Email.ToString());
+                        }
+                        try
+                        {
+                            ///jke risk of dispose
+                            //  using (ctx)
+                            {
 
-                            var emailProperties = new EmailProperties();
-                            //Email of authenticated external user
-                            emailProperties.To = usersEmail;
-                            emailProperties.From = "process@ghtpdfr.fr";
-                            emailProperties.Body = body;
-                            emailProperties.Subject = Subject;
-                            //emailProperties.CC = cc;
-                            Utility.SendEmail(ctx, emailProperties);
+                                var emailProperties = new EmailProperties();
+                                //Email of authenticated external user
+                                emailProperties.To = usersEmail;
+                                emailProperties.From = "process@ghtpdfr.fr";
+                                emailProperties.Body = body;
+                                emailProperties.Subject = Subject;
+                                //emailProperties.CC = cc;
+                                Utility.SendEmail(ctx, emailProperties);
 
 
 
-                            ctx.ExecuteQuery();
+                                ctx.ExecuteQuery();
+
+
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
 
 
 
                         }
-                    }
-                    catch (Exception ex)
-                    {
-
-
 
                     }
-
-                   
                 }
             }
          }

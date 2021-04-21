@@ -179,7 +179,7 @@ namespace GED
                     RoleDefinitionBindingCollection collRoleDefinitionBinding = new RoleDefinitionBindingCollection(ctx);
                     if (createADL)
                     {
-                        AddAccusseDeLecture(ctx, item.Id, item["Title"].ToString(), userpermission);
+                        AddAccusseDeLecture("https://ghtpdfr.sharepoint.com/sites/ged", item.Id, item["Title"].ToString(), userpermission);
                     }
                     if (role == "modify")
                     {
@@ -236,7 +236,7 @@ namespace GED
                 RoleDefinitionBindingCollection collRoleDefinitionBinding = new RoleDefinitionBindingCollection(ctx);
                 if (createADL)
                 {
-                    AddAccusseDeLecture(ctx, item.Id, item["Title"].ToString(), userpermission,taxLabel,termGuid);
+                    AddAccusseDeLecture("https://ghtpdfr.sharepoint.com/sites/ged", item.Id, item["Title"].ToString(), userpermission,taxLabel,termGuid);
                 }
                 if (role == "modify")
                 {
@@ -251,30 +251,36 @@ namespace GED
             
 
         }
-        public static void AddAccusseDeLecture (ClientContext ctx , int docID ,  string docName ,User lecteur,string taxLabel =null,string termGuid = null )
+        public static void AddAccusseDeLecture (string webUrl , int docID ,  string docName ,User lecteur,string taxLabel =null,string termGuid = null )
         {
-
-            List itemList = ctx.Web.Lists.GetByTitle("Accusés de lecture");
-            ListItemCreationInformation itemCreateInfo = new ListItemCreationInformation();
-            ListItem itemtoADD = itemList.AddItem(itemCreateInfo);
-            itemtoADD["Title"] = docName;
-            itemtoADD["Lecteur"] = lecteur;
-            if (!string.IsNullOrEmpty(taxLabel))
+            using (ClientContext ctx = SPConnection.GetSPOLContext(webUrl))
             {
-                var termValue = new TaxonomyFieldValue();
-                termValue.Label = taxLabel;
-                termValue.TermGuid = termGuid;
-                termValue.WssId = -1;
+                List itemList = ctx.Web.Lists.GetByTitle("Accusés de lecture");
+                ListItemCreationInformation itemCreateInfo = new ListItemCreationInformation();
+                ListItem itemtoADD = itemList.AddItem(itemCreateInfo);
+                itemtoADD["Title"] = docName;
+                FieldUserValue usrValue = new FieldUserValue();
+                usrValue.LookupId = lecteur.Id; ;
+                itemtoADD["Lecteur"] = usrValue;
+                if (!string.IsNullOrEmpty(taxLabel))
+                {
+                    var termValue = new TaxonomyFieldValue();
+                    termValue.Label = taxLabel;
+                    termValue.TermGuid = termGuid;
+                    termValue.WssId = -1;
 
-                itemtoADD["UF_x0020_du_x0020_lecteur"] = termValue;
-                    }
-            itemtoADD["Document"] = docID;
-            itemtoADD["Document_x0020_lu"] = false;
-            itemtoADD["Commentaires_x0020__x0028_inform"] = "";
+                    itemtoADD["UF_x0020_du_x0020_lecteur"] = termValue;
+                }
+                FieldLookupValue val = new FieldLookupValue();
+                val.LookupId = docID;
+                itemtoADD["Document"] = val;
+                itemtoADD["Document_x0020_lu"] = false;
+                itemtoADD["Commentaires_x0020__x0028_inform"] = "";
 
 
-            itemtoADD.SystemUpdate();
-            ctx.ExecuteQuery();
+                itemtoADD.Update();
+                ctx.ExecuteQuery();
+            }
         }
         public static void ApplyCibCollectiveProcess(ClientContext ctx, ClientContext ctx1, ListItem item, string emailCibField, string cibleCollectiveField, bool createAL)
         {

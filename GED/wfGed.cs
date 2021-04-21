@@ -21,7 +21,7 @@ namespace GED
         {
             string httpPostData = string.Empty;
             
-        //   SPFunctions.getStatus("https://ghtpdfr.sharepoint.com/sites/ged", 36, "GED",log);
+        //  SPFunctions.getStatus("https://ghtpdfr.sharepoint.com/sites/ged", 36, "GED",log);
             var reader = new StreamReader(req.Content.ReadAsStreamAsync().Result);
             if (reader != null)
             {

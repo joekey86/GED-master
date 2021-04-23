@@ -165,6 +165,7 @@ namespace GED
 
         public static void SPPermission(ClientContext ctx, ListItem item , string role , FieldUserValue[] users, bool createADL)
         {
+            if(users!=null)
            // using (ClientContext ctx = SPConnection.GetSPOLContext(ctx1.Url))
             {
                // ListItem item = ctx.Web.Lists.GetByTitle("GED").GetItemById(item1.Id);
